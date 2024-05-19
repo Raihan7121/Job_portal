@@ -19,7 +19,7 @@ class RedirectAuthenticate
         if(!$request->user()){
             return $next($request);
         } else {
-            return redirect()->route('account.profile');
+            return redirect()->route('panel.profile');
         }
         
     }

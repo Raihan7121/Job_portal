@@ -19,7 +19,7 @@ class Authenticate
         if($request->user()){
             return $next($request);
         } else {
-            return redirect()->route('account.login');
+            return redirect()->route('panel.login');
         }
     }
 }
