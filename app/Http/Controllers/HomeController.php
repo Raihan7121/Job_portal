@@ -28,8 +28,23 @@ class HomeController extends Controller
     }
 
     public function dashboard(){
+        $userId = Auth::user()->id;
+
+        $products = Product::where('seller_id', $userId)
+                            ->with('sells')
+                            ->paginate(10);
+
+        $sells = Sell::where('customer_id', $userId)->with('product')->paginate(10);
+
+        $users = User::where('id', '!=', $userId)->get();
+
         $best_seller_products = Product::orderBy('no_of_sales', 'desc')->paginate(10);
-        return view('panel.dashboard',['best_seller_products' => $best_seller_products ]);
+        return view('panel.dashboard',[
+            'best_seller_products' => $best_seller_products ,
+            'products' => $products , 
+            'sells' => $sells ,
+            'users'=>$users
+        ]);
       
     }
     public function profile(){
@@ -47,7 +62,7 @@ class HomeController extends Controller
     public function processRegistration(Request $request){
         $validator = Validator::make($request->all(),[
             'name' => 'required',
-            'role' => 'required',
+            //'role' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:5|same:confirm_password',
             'confirm_password' => 'required',
@@ -58,7 +73,7 @@ class HomeController extends Controller
             $user =new User();
 
             $user->name = $request->name;
-            $user->role = $request->role;
+            $user->role = "user";
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->save();
@@ -87,7 +102,10 @@ class HomeController extends Controller
 
         if($validator->passes()){
 
+           // $user = User::where('email'=>$request->email)
+
             if(Auth::attempt(['email' => $request->email , 'password' => $request->password ])){
+                session()->flash('appUserId','You have registerd successfully.');
                 return redirect()->route('panel.dashboard');
             }else {
                 return redirect()->route('panel.login')->with('error','Either Email/Password is incorrect ');
@@ -177,7 +195,7 @@ class HomeController extends Controller
 
            session()->flash('success','Profile updated successfully.');
 
-           return redirect()->route('panel.dashboard');
+           return redirect()->back()->with('success', 'Profile updated successfully.');
 
         } else {
             return redirect()->back()->with('error', 'Product update unsuccessfully.')->withErrors($validator)->withInput();
@@ -211,5 +229,61 @@ class HomeController extends Controller
             return redirect()->back()->with('error', 'Password update unsuccessfully.')->withErrors($validator)->withInput();
         }
 
+    }
+
+    public function deleteUser($id){
+
+        $user = User::find($id);  
+    // Check if the product exists
+        if (!$user) {
+            return redirect()->back()->with('error', 'user not found.');
+        }
+        Product::where('seller_id', $id)->delete();
+        // Delete related sells
+        Sell::where('customer_id', $id)->delete();
+    // Delete the product
+        $user->delete();
+    // Redirect back with a success message
+        return redirect()->back()->with('success', 'User deleted successfully.');   
+    }
+
+    public function adminRole($id){
+
+        $user = User::find($id);  
+    // Check if the product exists
+        if (!$user) {
+            return redirect()->back()->with('error', 'user not found.');
+        }
+        $user->role = "admin";
+    // Delete the product
+        $user->save();
+    // Redirect back with a success message
+        return redirect()->back()->with('success', 'User deleted successfully.');   
+    }
+    public function sellerRole($id){
+
+        $user = User::find($id);  
+    // Check if the product exists
+        if (!$user) {
+            return redirect()->back()->with('error', 'user not found.');
+        }
+        $user->role = "seller";
+    // Delete the product
+        $user->save();
+    // Redirect back with a success message
+        return redirect()->back()->with('success', 'User deleted successfully.');   
+    }
+    public function userRole($id){
+
+        $user = User::find($id);  
+    // Check if the product exists
+        if (!$user) {
+            return redirect()->back()->with('error', 'user not found.');
+        }
+        $user->role = "user";
+    // Delete the product
+        $user->save();
+    // Redirect back with a success message
+        return redirect()->back()->with('success', 'User deleted successfully.');   
     }
 }

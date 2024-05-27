@@ -62,7 +62,9 @@
                     <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                         <div class="navbar-nav mx-auto">
                             <a href="{{route('view.home')}}" class="nav-item nav-link active">Home</a>
-                            <a href="{{route('view.shop')}}" class="nav-item nav-link">Shop</a>
+                            <a href="{{route('view.cart')}}" class="nav-item nav-link">Cart</a>
+
+                            {{-- <a href="{{route('view.shop')}}" class="nav-item nav-link">Shop</a>
                             <a href="{{route('product.product-detail',1)}}" class="nav-item nav-link">Shop Detail</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -72,14 +74,14 @@
                                     
                                     
                                 </div>
-                            </div>
+                            </div> --}}
                             <a href="{{route('view.contact')}}" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="d-flex m-3 me-0">
                            
-                            <a href="#" class="position-relative me-4 my-auto">
+                            <a href="{{route('view.cart')}}" class="position-relative me-4 my-auto">
                                 <i class="fa fa-shopping-bag fa-2x"></i>
-                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3 </span>
+                                {{-- <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3 </span> --}}
                             </a>
                             <a href="{{route('panel.login')}}" class="my-auto">
                                 <i class="fas fa-user fa-2x"></i>

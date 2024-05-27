@@ -58,7 +58,7 @@
             <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name">
             <p></p>
         </div> 
-        <div class="mb-3">
+        {{-- <div class="mb-3">
           <label for="" class="mb-2">Category<span class="req">*</span></label>
           <select name="role" id="role" class="form-control">
               <option value="">Select a Category</option>
@@ -69,7 +69,7 @@
                  
           </select>
           <p></p>
-      </div>
+      </div> --}}
         <div class="mb-3">
             <label for="" class="mb-2">Email*</label>
             <input type="text" name="email" id="email" class="form-control" placeholder="Enter Email">

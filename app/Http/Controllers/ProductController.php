@@ -74,7 +74,7 @@ class ProductController extends Controller
             $image->toPng()->save(public_path('/product_image/thumb/'.$imageName));
             $product->product_image  = $imageName;
         }
-        $product->product_video = $request->input('video');
+        //$product->product_video = $request->input('video');
         
         // if ($request->hasFile('video')) {
            
@@ -174,7 +174,7 @@ class ProductController extends Controller
                     'offer_price' => $request->input('offer_price'),
                     'quantity' => $request->input('quantity'),
                     'product_image'  => $imageName,
-                    'product_video' => $request->input('video'),
+                   // 'product_video' => $request->input('video'),
                 ]);
 
                 session()->flash('success','Product updateed successfully.');

@@ -112,5 +112,55 @@ class OrderController extends Controller
         return redirect()->back()->with('success', 'Product deleted successfully.');   
     }
 
+    
+
+    public function addSell(Request $request) {
+        // Decode the quantities from the URL parameter
+        $qu = $request->input('quantities');
+        $quantities = json_decode(urldecode($qu), true);
+    
+        // Check for JSON decode errors
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return redirect()->route('panel.profile')->with('error', 'Invalid quantities format.');
+        }
+    
+        // Ensure quantities is an array
+        if (!is_array($quantities)) {
+            return redirect()->route('panel.profile')->with('error', 'Invalid quantities format.');
+        }
+    
+        // Loop through the quantities and store them in the sells table
+        foreach ($quantities as $productId => $quantity) {
+            if ($quantity > 0) {
+                $product = Product::find($productId);
+                if ($product && $quantity>0) {
+                    $price = $product->offer_price ?? $product->regular_price;
+    
+                    $sell = new Sell();
+                    $sell->customer_id = Auth::user()->id;
+                    $sell->seller_id = $product->seller_id;
+                    $sell->product_id = $product->id;
+                    $sell->quantity = $quantity;
+                    $sell->price = $price;
+                    $sell->total_price = $price * $quantity;
+    
+                    $sell->save();
+    
+                    $product->no_of_sales += $quantity;
+                    $product->total_revenue += $price * $quantity;
+                    $product->quantity -= $quantity;
+    
+                    $product->save();
+                }
+            }
+        }
+    
+        return redirect()->route('panel.profile')->with('success', 'Products have been bought successfully.');
+    }
+    
+
+
+   
+
 
 }

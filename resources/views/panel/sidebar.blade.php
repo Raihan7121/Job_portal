@@ -4,7 +4,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{{route('panel.dashboard')}}">
+        <a class="nav-link collapsed" href="{{route('panel.dashboard')}}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -29,6 +29,15 @@
         </li>
       </ul>
     </li><!-- End Tables Nav -->
+  @elseif(Auth::user() && Auth::user()->role == 'user')
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{{route('view.home')}}">
+        <i class="bi bi-grid"></i>
+        <span>Buy Product</span>
+      </a>
+    </li>
+
 @endif
       
 

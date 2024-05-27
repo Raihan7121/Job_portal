@@ -53,13 +53,13 @@
                 @enderror
             </div>
             
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="video" class="form-label">Product Video URL</label>
                 <input type="text" class="form-control @error('video') is-invalid @enderror" id="video" name="video" >
                 @error('video')
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
-            </div>
+            </div> --}}
             
 
             <div class="mb-3">
@@ -133,8 +133,7 @@ $('#registrationForm').submit(function(e){
                 }
             } else {
                 window.location.href = '{{ route('panel.dashboard') }}';
-            }
-            
+            }          
 
         }
     });
