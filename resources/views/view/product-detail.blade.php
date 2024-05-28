@@ -83,11 +83,11 @@
             </div>
            
             <div  style="margin-left:400px">
-                @if ($product->product_video)
+                {{-- @if ($product->product_video)
                     <iframe width="560" height="315" src="{{$product->product_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 @else
                     <iframe width="560" height="315" src="https://www.youtube.com/watch?v=ijDGDRUAo74&list=PL0b6OzIxLPbz7JK_YYrRJ1KxlGG4diZHJ&index=36&t=5s&ab_channel=YahooBaba" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                @endif
+                @endif --}}
             </div> 
             
         

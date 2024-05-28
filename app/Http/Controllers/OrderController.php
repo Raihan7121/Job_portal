@@ -131,8 +131,14 @@ class OrderController extends Controller
     
         // Loop through the quantities and store them in the sells table
         foreach ($quantities as $productId => $quantity) {
+            Order::where('customer_id', Auth::user()->id)
+                    ->where('product_id', $productId)
+                    ->delete();
             if ($quantity > 0) {
                 $product = Product::find($productId);
+
+
+
                 if ($product && $quantity>0) {
                     $price = $product->offer_price ?? $product->regular_price;
     

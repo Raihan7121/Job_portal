@@ -26,9 +26,12 @@
                 <label for="category" class="mb-2">Category<span class="req">*</span></label>
                 <select name="category" id="category" class="form-control @error('category') is-invalid @enderror">
                     <option value="">Select a Category</option>
-                    <option value="fruits" {{ $product->category == 'fruits' ? 'selected' : '' }}>Fruits</option>
-                    <option value="food" {{ $product->category == 'food' ? 'selected' : '' }}>Natural food</option>
-                    <option value="user" {{ $product->category == 'user' ? 'selected' : '' }}>Fast Food</option>
+                    
+                    <option value="fruits">Fruits</option>
+                    <option value="bread">Bread</option>
+                    <option value="meat">Meat</option>
+                    <option value="vegetables">Vegetables</option>
+                    
                 </select>
                 @error('category')
                     <p class="invalid-feedback">{{ $message }}</p>
@@ -63,7 +66,7 @@
 
             <div class="mb-3">
                 <label for="weight" class="mb-2">Weight*</label>
-                <input type="number" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ $product->weight }}">
+                <input type="text" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ $product->weight }}">
                 @error('weight')
                  <p class="invalid-feedback">{{ $message }}</p>
                  @enderror
@@ -71,7 +74,7 @@
 
             <div class="mb-3">
                 <label for="regular_price" class="mb-2">Regular price*</label>
-                <input type="number" name="regular_price" id="regular_price" class="form-control @error('regular_price') is-invalid @enderror" value="{{ $product->regular_price }}" min="0">
+                <input type="text" name="regular_price" id="regular_price" class="form-control @error('regular_price') is-invalid @enderror" value="{{ $product->regular_price }}" min="0">
                 @error('regular_price')
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
@@ -79,7 +82,7 @@
 
             <div class="mb-3">
                 <label for="offer_price" class="mb-2">Offer price</label>
-                <input type="number" name="offer_price" id="offer_price" class="form-control @error('offer_price') is-invalid @enderror" value="{{ $product->offer_price }}" min="0">
+                <input type="texr" name="offer_price" id="offer_price" class="form-control @error('offer_price') is-invalid @enderror" value="{{ $product->offer_price }}" min="0">
                 @error('offer_price')
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror

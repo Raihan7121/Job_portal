@@ -12,7 +12,7 @@
               <th scope="col">#Id</th>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
-              <th scope="col">Address</th>
+              {{-- <th scope="col">Address</th> --}}
               <th scope="col">Role</th>
               <th scope="col">Action</th>
             </tr>
@@ -25,7 +25,7 @@
                             <th scope="row"><a href="#">#{{$user->id}}</a></th>
                             <td><a href="#" class="text-primary">{{$user->name}}</a></td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->address}}</td>
+                            {{-- <td>{{$user->address}}</td> --}}
                             <td>{{$user->role}}</td>
                             <td>
                               <div class="action-dots">

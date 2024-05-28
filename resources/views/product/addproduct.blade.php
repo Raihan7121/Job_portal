@@ -64,7 +64,7 @@
 
             <div class="mb-3">
                 <label for="weight" class="mb-2">Weight*</label>
-                <input type="number" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" placeholder="Enter weight">
+                <input type="text" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" placeholder="Enter weight">
                 @error('weight')
                  <p class="invalid-feedback">{{ $message }}</p>
                  @enderror
@@ -72,7 +72,7 @@
 
             <div class="mb-3">
                 <label for="regular_price" class="mb-2">Regular price*</label>
-                <input type="number" name="regular_price" id="regular_price" class="form-control @error('regular_price') is-invalid @enderror" placeholder="Enter regular_price" min="0">
+                <input type="text" name="regular_price" id="regular_price" class="form-control @error('regular_price') is-invalid @enderror" placeholder="Enter regular_price" min="0">
                 @error('regular_price')
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
@@ -80,14 +80,14 @@
 
             <div class="mb-3">
                 <label for="offer_price" class="mb-2">Offer price</label>
-                <input type="number" name="offer_price" id="offer_price" class="form-control @error('offer_price') is-invalid @enderror" placeholder="Enter offer_price" min="0">
+                <input type="text" name="offer_price" id="offer_price" class="form-control @error('offer_price') is-invalid @enderror" placeholder="Enter offer_price" min="0">
                 @error('offer_price')
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
             </div> 
 
             <div class=" mb-3">
-                <label for="quantity" class="mb-2">Quantity<span class="req">*</span></label>
+                <label for="quantity" class="mb-2">Quantity*<span class="req">*</span></label>
                 <input type="number" min="0" placeholder="Quantity" id="quantity" name="quantity" class="form-control @error('quantity') is-invalid @enderror">
                 @error('quantity')
                       <p class="invalid-feedback">{{ $message }}</p>

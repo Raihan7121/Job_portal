@@ -78,6 +78,8 @@
                     </tbody>
                   </table>
 
+                  {{$best_seller_products->links()}}
+
                 </div>
 
               </div>
